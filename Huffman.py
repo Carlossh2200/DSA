@@ -1,3 +1,4 @@
+#Sandoval Carlos
 archivo = open("texto.txt", mode='r', encoding='UTF-8')
 texto = archivo.read()
 
