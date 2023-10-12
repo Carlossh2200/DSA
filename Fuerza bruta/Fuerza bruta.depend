@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1692468471 source:c:\users\carlo\desktop\algoritmia\fuerza bruta\main.cpp
+	<iostream>
+	<time.h>
+	<math.h>
+	<chrono>
+
