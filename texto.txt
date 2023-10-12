@@ -1,0 +1,119 @@
+Actividad 05 - Kruskal y Prim
+Analisis de Algoritmos
+Sandoval Huerta Carlos Arturo
+
+Introduccion:
+Imagina que eres un planificador de transporte encargado de disenar una red de carreteras para conectar varias ciudades en una region montanosa. Cada ciudad se representa como un vertice en un grafo ponderado, donde las aristas representan las carreteras y los pesos de las aristas indican la distancia en kilometros entre las ciudades. Tu tarea es encontrar un Arbol de Expansion Minima (Minimum Spanning Tree, MST) para conectar todas las ciudades de manera eficiente y minimizar la longitud total de las carreteras construidas.
+Proponga un grafo ponderado que represente las ciudades y las distancias entre ellas. Puedes presentar el grafo en forma de matriz de adyacencia o lista de adyacencia. Asegurate de incluir al menos 5 ciudades en el grafo.
+Selecciona uno de los dos algoritmos de arbol de Expansion Minima: Kruskal o Prim. Deben elegir uno y justificar su eleccion.
+Implementa el algoritmo elegido para encontrar un MST en el grafo proporcionado. Deben mostrar como aplicaron el algoritmo paso a paso, incluyendo la eleccion de aristas en cada paso. Pueden usar papel y lapiz o un entorno de programacion, segun su eleccion.
+Calculen la longitud total de las carreteras en el MST resultante. Deben sumar los pesos de todas las aristas seleccionadas en el MST.
+
+Explicacion teorica del algoritmo
+Objetivos generales
+Los objetivos generales de esta actividad son analizar ya sea el algoritmo de Kruskal o el de Prim para resolver un arbol de expansion minima, y proponer un grafo para despues aplicarlo.
+Objetivo particular
+Entender como funcionan los arboles de expansion minima, proponer grafos y encontrar los caminos mas eficientes para despues mostrar el peso final de nuestro arbol.
+
+Desarrollo
+aplicacion practica de como se hizo el programa y como se utiliza
+
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Oct  6 17:57:23 2023
+
+@author: carlo
+"""
+
+A_B = {
+     "costo" : "4",
+     "origen" : "A",
+     "destino" : "B"
+     }
+
+A_C = {
+       "costo" : "2",
+       "origen" : "A",
+       "destino" : "C"
+       }
+
+B_C = {
+     "costo" : "4",
+     "origen" : "B",
+     "destino" : "C"
+     }
+
+C_D = {
+       "costo" : "3",
+       "origen" : "C",
+       "destino" : "D"
+       }
+
+C_E = {
+       "costo" : "3",
+       "origen" : "C",
+       "destino" : "E"
+       }
+
+D_E = {
+       "costo" : "2",
+       "origen" : "D",
+       "destino" : "E"
+       }
+
+rutas = {
+    "A_B" : A_B,
+    "A_C" : A_C,
+    "B_C" : B_C,
+    "C_D" : C_D,
+    "C_E" : C_E,
+    "D_E" : D_E,
+    }
+
+aristas=[A_B,A_C,B_C,C_D,C_E,D_E]
+
+sorted_aristas = sorted(aristas, key=lambda x: int(x["costo"]))
+
+nodosVisitados=[]
+
+costo = 0
+
+nodosFaltantes=['A','B','C','D','E']
+
+for i in range(len(aristas)):
+    if sorted_aristas[i]['destino'] not in nodosVisitados:
+        nodosVisitados.append(sorted_aristas[i]['destino'])
+        print("Arista elegida: ",sorted_aristas[i])
+        costo += int(sorted_aristas[i]['costo'])
+
+Este programa se hizo primero proponiendo el siguiente grafo: 
+
+Despues de eso, lo que hice fue poner las rutas en un diccionario, poniendo dentro de este, el costo de la arista, el origen de la ruta y el destino de la ruta, despues de eso hice una lista de mis diccionarios llamada aristas, con esto pude aplicar la funcion sorted() de python a esta lista, esto lo hice con una funcion lambda y ordenandolos con la key costo, esto nos da el primer paso de Kruskal, ordenar todo por costo.
+Luego de eso hice 2 listas mas, una llamada nodosVisitados y otra llamada nodosFaltantes, la cual se inicializa con todos los nodos del grafo, y ademas una variable de tipo entero llamada costo, para guardar el costo de la ruta.
+Ahora, la parte interesante de esto fue el elegir la ruta correcta, esto lo hice tomando en cuenta la key destino ya que si lo analizamos bien, no queremos ir al mismo destino dos veces, lo que crea un loop o un circulo en nuestro grafo, ya con este analisis solo fue cuestion de anadir a la lista las rutas que no se encontraban con el destino ya usado.
+y al final le anadimos el costo a la variable del mismo nombre.
+
+ 
+Cuales fueron las aristas seleccionadas en el MST? Enumeralas.
+A-B
+A-C
+B-C
+C-D
+C-E
+D-E
+Cual es la longitud total de las carreteras en el MST?
+A-B : 4
+A-C : 2
+B-C : 4
+C-D : 3
+C-E : 3
+D-E : 2
+Como se compara la longitud total de las carreteras en el MST con la longitud total si se conectaran todas las ciudades directamente sin un MST?
+La longitud total con el MST es de 11, y sin el MST es de 18
+Por que eligieron el algoritmo Kruskal o Prim? Consideran que fue la eleccion adecuada?
+Por su simplicidad y por el hecho de que en vez de tener tres arreglos, solo necesite de dos y de apoyarme con las aristas, y creo que si fue la eleccion adecuada ya que a mi parecer kruskal es mas sencillo en muchos casos. quizas en arboles muy grandes y complejos Prim sea mejor opcion.
+
+
+Conclusiones:
+En conclusion los MST es un tema muy interesante e importante en el mundo de los algoritmos, los utilizamos diario en cosas como Google Maps, videojuegos, entre otros.
+El reto del profesor de dejarnos analizar el algoritmo nosotros mismos fue bueno, ya que varias personas sacamos conclusiones diferentes del mismo problema y es asi como se llega a la mejor respuesta de todas.
